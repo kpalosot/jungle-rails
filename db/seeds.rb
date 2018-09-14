@@ -132,5 +132,49 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+puts "Creating users"
+
+user1 = User.create(
+  first_name: 'Kyla',
+  last_name: 'Palos',
+  email: 'kyla_yugi@yahoo.com',
+  password: '123'
+)
+
+user2 = User.create(
+  first_name: 'Kyla',
+  last_name: 'Palos',
+  email: 'kyla.palos@gmail.com',
+  password: '456'
+)
+
+puts "Re-creating reviews"
+
+Review.destroy_all
+
+product1 = Product.find_by(id: 1)
+product2 = Product.find_by(id: 2)
+
+product1.reviews.create(
+  description: 'good',
+  rating: 3,
+  user_id: user1.id
+)
+product1.reviews.create(
+  description: 'shit',
+  rating: 1,
+  user_id: user2.id
+)
+
+product2.reviews.create(
+  description: 'awesome',
+  rating: 4,
+  user_id: user1.id
+)
+product2.reviews.create(
+  description: 'nice',
+  rating: 3,
+  user_id: user2.id
+)
 
 puts "DONE!"

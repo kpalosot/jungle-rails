@@ -26,6 +26,26 @@
       </div>
     </div>
 
+    <div class="row">
+      <% flash.each do |name, msg|%>
+        <%= content_tag :div, msg, class: name %>
+      <% end %>
+    </div>
+
+    <div class="row">
+      <%= render 'review_form'%>
+    </div>
+
+    <h2>Product Reviews</h2>
+
+    <div class="row">
+      <% @product.reviews.each do |review| %>
+        <%= render 'review', review: review %>
+      <% end %>
+    </div>
+
   </article>
 
 </section>
+
+<%= console %>

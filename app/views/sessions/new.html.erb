@@ -4,6 +4,10 @@
   </header>
 </section>
 
+  <% flash.each do |name, msg|%>
+    <%= content_tag :div, msg, class: name %>
+  <% end %>
+
   <div class="row">
     <div class="col-sm-6 col-sm-offset-1">
       <%= form_for @user, url: login_path do |form| %>
