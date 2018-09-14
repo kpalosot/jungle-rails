@@ -1,0 +1,11 @@
+Order #<%= @order.id%>
+====================================
+Order Summary:
+<% @order.line_items.each do |item| %>
+  <%= item.product.name %>
+  <%= item.product.description %>
+  <%= item.item_price %>
+  <%= item.quantity %>
+  <%= item.total_price %>
+  =========================
+<% end %>

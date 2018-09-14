@@ -1,9 +1,7 @@
 class OrdersController < ApplicationController
 
   def show
-    # @order = Order.find(params[:id])
     @order = Order.includes(line_items: [:product]).find(params[:id])
-
 
   end
 
@@ -12,6 +10,7 @@ class OrdersController < ApplicationController
     order  = create_order(charge)
 
     if order.valid?
+      OrderMailer.order_email(order).deliver_now
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'
     else
@@ -40,7 +39,7 @@ class OrdersController < ApplicationController
 
   def create_order(stripe_charge)
     order = Order.new(
-      email: params[:stripeEmail],
+      email: current_user.email,
       total_cents: cart_subtotal_cents,
       stripe_charge_id: stripe_charge.id, # returned by stripe
     )
