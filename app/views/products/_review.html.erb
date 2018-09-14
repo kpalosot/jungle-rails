@@ -6,6 +6,11 @@
     <dd><%= review.rating %> / 5</dd>
     <dt>Review:</dt>
     <dd><%= review.description %></dd>
+    <% if current_user && review.user.id == current_user.id %>
+      <%= link_to 'Delete Review', [review.product, review],
+                  method: :delete,
+                  data: { confirm: 'Are you sure?'} %>
+    <% end %>
   </dl>
 
 </div>

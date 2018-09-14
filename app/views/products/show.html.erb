@@ -32,14 +32,16 @@
       <% end %>
     </div>
 
-    <div class="row">
-      <%= render 'review_form'%>
-    </div>
+    <% if current_user%>
+      <div class="row">
+        <%= render 'review_form'%>
+      </div>
+    <% end %>
 
     <h2>Product Reviews</h2>
 
     <div class="row">
-      <% @product.reviews.each do |review| %>
+      <% @product.reviews.reverse.each do |review| %>
         <%= render 'review', review: review %>
       <% end %>
     </div>
@@ -47,5 +49,3 @@
   </article>
 
 </section>
-
-<%= console %>
