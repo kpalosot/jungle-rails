@@ -1,7 +1,6 @@
 class ReviewsController < ApplicationController
 
   before_filter :is_logged_in?
-  # before_action :set_product
 
   def create
     @product = Product.includes(reviews: [:user]).find_by(id: params[:product_id])
