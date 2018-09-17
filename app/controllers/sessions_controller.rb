@@ -6,8 +6,10 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by_email(params['user']['email'])
 
+    # email = params['user']['email']
+    # password = params['user']['password'] 
+    # @user = User.authenticate_with_credentials(email, password)
     if @user && @user.authenticate(params['user']['password'])
-
       session[:user_id] = @user.id
       redirect_to root_path, notice: 'Logged in'
     else
