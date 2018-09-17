@@ -21,6 +21,10 @@ RSpec.describe Product, type: :model do
         )
       end
 
+      it 'should save' do
+        expect(@headphones.save).to eql(true)
+      end
+
       it 'should return be invalid if it has no name' do
         @headphones.name = nil
         expect(@headphones).to_not be_valid
